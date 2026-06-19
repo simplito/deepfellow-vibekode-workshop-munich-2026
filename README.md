@@ -20,15 +20,15 @@ Because the trainers built DeepFellow, you get answers straight from the source.
 
 ## Workshop setup
 
-OVH servers are provided. Bring a laptop with internet access and an SSH client.
+AWS servers are provided. Bring a laptop with internet access and an SSH client.
 
 | Component | Where |
 |---|---|
 | **DFServer** | laptop |
-| **DFInfra (Child)** | laptop, connected to the cloud node via `mesh connect` |
-| **DFInfra (cloud)** | shared OVH node (×1 per team) |
+| **DFInfra (Child)** | laptop, connected to AWS via `mesh connect` |
+| **DFInfra (AWS)** | shared AWS node (×1 per team) |
 
-Two models out of the box: `gemma` (Ollama on the cloud node) and `gpt` (openAI on the local Child infra).
+Two models out of the box: `gemma` (Ollama on AWS) and `gpt` (openAI on the local Child infra).
 
 ## Plugins in this repo
 
