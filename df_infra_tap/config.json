@@ -1,0 +1,9 @@
+{
+  "name": "df_infra_tap_plugin",
+  "version": "1.0.0",
+  "description": "Logs the exact payload crossing the infra boundary (after anonymization, before deanonymization)",
+  "author": "DeepFellow",
+  "enabled": true,
+  "priority": 0,
+  "routes": ["/v1/chat/completions"]
+}
