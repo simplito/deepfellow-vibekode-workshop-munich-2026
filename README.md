@@ -16,4 +16,8 @@ DeepFellow is an open-source AI gateway with an OpenAI-compatible API and a plug
 
 Because the trainers built DeepFellow, you get answers straight from the source.
 
+## Links
+
+- <https://docs.deepfellow.ai>
+- <https://vibekode.it/connecting-ai/reliable-ai-systems-deepfellow/>
 
