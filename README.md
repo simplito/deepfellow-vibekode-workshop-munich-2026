@@ -18,6 +18,7 @@ Because the trainers built DeepFellow, you get answers straight from the source.
 
 ## Links
 
-- <https://docs.deepfellow.ai>
-- <https://vibekode.it/connecting-ai/reliable-ai-systems-deepfellow/>
+- [DeepFellow docs](https://docs.deepfellow.ai)
+- [VibeKode workshop page](https://vibekode.it/connecting-ai/reliable-ai-systems-deepfellow/)
+- [Workshop Chat](https://hack.chat/?workshop-DF-Munich-2026)
 
