@@ -39,19 +39,13 @@ sudo emerge net-proxy/bore
 
 ## CLI Commands
 
-### Install
-
 ```bash
 # CLI install
 curl https://deepfellow.ai/install.sh | bash
 
 # Run the CLI
 deepfellow
-```
 
-### DFServer
-
-```bash
 # DFServer install
 deepfellow server install
 
@@ -59,19 +53,11 @@ deepfellow server install
 deepfellow server start
 deepfellow server create-admin
 
-# df_infra_tap plugin
-deepfellow server restart
-deepfellow server logs -f | grep "INFRA TAP"
-
-# PII anonymization
-deepfellow server env set PLUGINS_SETUP '{"df_anonymize_models": ["gpt-5-mini"]}'
-```
-
-### DFInfra (local)
-
-```bash
 # Local DFInfra install
 deepfellow infra install
+
+# Expose DFInfra via bore
+bore local 8086 --to bore.pub
 
 # Update the INFRA_URL
 deepfellow infra env set INFRA_URL http://bore.pub:4321
@@ -79,16 +65,14 @@ deepfellow infra info
 
 # Connect Infras
 deepfellow infra connect wss://infra-01.workshop-demo.deepfellow.com <DF_MESH_KEY>
-```
-
-### bore + df_infra_tap
-
-```bash
-# Expose DFInfra via bore
-bore local 8086 --to bore.pub
 
 # df_infra_tap plugin
 cp -r server-plugins/df_infra_tap ~/.deepfellow/server/plugins/
+deepfellow server restart
+deepfellow server logs -f | grep "INFRA TAP"
+
+# PII anonymization
+deepfellow server env set PLUGINS_SETUP '{"df_anonymize_models": ["gpt-5-mini"]}'
 ```
 
 ## Links
