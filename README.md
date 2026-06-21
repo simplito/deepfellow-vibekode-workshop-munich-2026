@@ -18,6 +18,9 @@ Because the trainers built DeepFellow, you get answers straight from the source.
 
 ## Prerequisites
 
+- Repo: [bit.ly/deepfellow-munich-repo](https://bit.ly/deepfellow-munich-repo)
+- Chat: [bit.ly/deepfellow-munich-chat](https://bit.ly/deepfellow-munich-chat)
+
 - [Git 2.30+](https://git-scm.com/downloads)
 - [Python 3.13.x](https://www.python.org/downloads/)
 - [Docker Engine 28+](https://docs.docker.com/engine/install/)
