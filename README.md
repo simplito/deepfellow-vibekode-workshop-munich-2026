@@ -18,6 +18,13 @@ Because the trainers built DeepFellow, you get answers straight from the source.
 
 ## Prerequisites
 
+- [Git 2.30+](https://git-scm.com/downloads)
+- [Python 3.13.x](https://www.python.org/downloads/)
+- [Docker Engine 28+](https://docs.docker.com/engine/install/)
+- Python package manager: [uv](https://docs.astral.sh/uv/) / [pipx](https://pipx.pypa.io/) / pip3
+- [Cherry Studio](https://cherryai.com/download)
+- bore (see below)
+
 ### bore
 
 ```bash
