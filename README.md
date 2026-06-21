@@ -49,7 +49,7 @@ deepfellow
 # DFServer install
 deepfellow server install
 
-# Start the server
+# Start the DFServer
 deepfellow server start
 deepfellow server create-admin
 
