@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building reliable AI systems with DeepFellow — VibeKode Munich 2026</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css" />
+  <style>
+    :root {
+      --df-blue: #4a9eff;
+      --df-green: #4ade80;
+      --df-yellow: #facc15;
+      --df-red: #f87171;
+    }
+    .reveal { font-size: 1.6rem; }
+    .reveal h1 { font-size: 2.2rem; color: var(--df-blue); }
+    .reveal h2 { font-size: 1.8rem; color: var(--df-blue); }
+    .reveal h3 { font-size: 1.4rem; color: var(--df-green); }
+    .reveal p, .reveal li { font-size: 1.1rem; line-height: 1.6; }
+    .reveal code { background: #1e1e2e; padding: 2px 6px; border-radius: 4px; color: var(--df-yellow); font-size: 0.95em; }
+    .reveal pre code { font-size: 0.85rem; }
+    .reveal img { max-height: 58vh; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 24px rgba(0,0,0,0.5); }
+    .reveal table { font-size: 0.9rem; }
+    .reveal table th { background: #1e3a5f; color: var(--df-blue); }
+    .reveal table td { background: #111827; }
+    .reveal blockquote { background: #1e1e2e; border-left: 4px solid var(--df-blue); padding: 0.5em 1em; font-size: 0.95rem; }
+    .tag-admin { background: var(--df-red); color: #000; padding: 2px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; vertical-align: middle; }
+    .tag-all   { background: var(--df-green); color: #000; padding: 2px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; vertical-align: middle; }
+    .note { font-size: 0.85rem; color: #aaa; font-style: italic; }
+    .cmd { display: block; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 0.7em 1em; font-family: monospace; color: var(--df-yellow); font-size: 0.9rem; text-align: left; margin: 0.5em auto; max-width: 90%; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: center; }
+    .title-slide h1 { font-size: 2.6rem; }
+    .title-slide p { color: #9ca3af; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 0 — Title
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section class="title-slide">
+    <h1>Building reliable AI systems<br>with DeepFellow</h1>
+    <p>VibeKode Munich 2026 · Connecting AI</p>
+    <p style="margin-top:2rem;color:#6b7280;">Piotr Zalewa &amp; Michał Komorowski</p>
+  </section>
+  <section>
+    <h2>Agenda</h2>
+    <ol style="font-size:1rem;line-height:2;">
+      <li>Group setup &amp; prerequisites</li>
+      <li>DFInfra (cloud) — admin: add ollama + gemma</li>
+      <li>CLI + DFServer install</li>
+      <li>First API call via Swagger</li>
+      <li>Add local DFInfra (Child) + mesh connect</li>
+      <li>Call GPT via mesh</li>
+      <li>PII anonymization</li>
+      <li>df_infra_tap plugin</li>
+    </ol>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 1 — Group setup
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Group setup</h2>
+    <ul>
+      <li>Form <strong>3 groups</strong> — each gets a DFInfra with <strong>A10G GPU</strong></li>
+      <li>Choose one <strong>DFInfra admin</strong> per group</li>
+    </ul>
+  </section>
+  <section>
+    <h2>Workshop repo</h2>
+    <p><a href="https://bit.ly/deepfellow-munich-repo" target="_blank">bit.ly/deepfellow-munich-repo</a></p>
+    <p style="margin-top:-0.8rem;"><a href="https://github.com/simplito/deepfellow-vibekode-workshop-munich-2026" target="_blank" style="color:#6b7280;font-size:0.7rem;">github.com/simplito/deepfellow-vibekode-workshop-munich-2026</a></p>
+  </section>
+  <section>
+    <h2>Workshop chat</h2>
+    <p><a href="https://bit.ly/deepfellow-munich-chat" target="_blank">bit.ly/deepfellow-munich-chat</a></p>
+    <p style="margin-top:-0.8rem;"><a href="https://hack.chat/?workshop-DF-Munich-2026" target="_blank" style="color:#6b7280;font-size:0.7rem;">hack.chat/?workshop-DF-Munich-2026</a></p>
+    <p class="note">Use a simple nick</p>
+    <hr style="border-color:#333;margin:1.5rem 0;">
+    <p>On the chat you will find:</p>
+    <ul style="font-size:1rem;">
+      <li>Link to the repo</li>
+      <li>OpenAI API Key</li>
+      <li>3× DFInfra URL + API Key + Mesh Key</li>
+    </ul>
+    <p class="note" style="margin-top:1.2rem;">Admin API Key will be sent to the chosen Infra admins</p>
+  </section>
+  <section>
+    <h2>Prerequisite: install <code>bore</code></h2>
+    <pre><code class="language-bash"># Homebrew
+brew install ekzhang/bore/bore
+
+# Cargo
+cargo install bore-cli</code></pre>
+    <p class="note">More installation methods in <code>README.md</code></p>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 2 — DFInfra cloud (admin only)
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>DFInfra (cloud) <span class="tag-admin">admin only</span></h2>
+    <p>Log in with the DFInfra Admin API Key provided on the chat.</p>
+    <img src="img/01-DFInfra-login.png" alt="DFInfra login" />
+  </section>
+  <section>
+    <h2>Add ollama service</h2>
+    <img src="img/02-DFInfra-services-ollama.png" alt="Services ollama" />
+  </section>
+  <section>
+    <h2>Choose GPU hardware</h2>
+    <img src="img/03-DFInfra-services-ollama-choose-hardware.png" alt="Choose GPU" />
+  </section>
+  <section>
+    <h2>Downloading &amp; installing…</h2>
+    <p class="note">This takes a few minutes — switch to CLI prep in the meantime</p>
+    <img src="img/04-DFInfra-services-ollama-downloading-installing-few-minutes.png" alt="Downloading" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 3 — CLI install
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>CLI install <span class="tag-all">everyone</span></h2>
+    <p>All commands are in <code>README.md</code></p>
+    <img src="img/05-CLI-install.png" alt="CLI install" />
+  </section>
+  <section>
+    <h2>Run the CLI</h2>
+    <span class="cmd">deepfellow</span>
+    <img src="img/slide-12-deepfellow-command.png" alt="deepfellow command" style="margin-top:1rem;max-height:40vh;width:66%;" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 4 — DFServer install
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>DFServer install <span class="tag-all">everyone</span></h2>
+    <p>You need <strong>DFInfra URL</strong> and <strong>DFInfra API Key</strong> from the chat.</p>
+    <img src="img/07-a-CLI-server-install.png" alt="Server install" />
+  </section>
+  <section>
+    <h2>Install options</h2>
+    <table>
+      <thead><tr><th>Prompt</th><th>Answer</th></tr></thead>
+      <tbody>
+        <tr><td>MongoDB</td><td><code>y</code> (default)</td></tr>
+        <tr><td>Use vectorDB</td><td><code>y</code> (default)</td></tr>
+        <tr><td>Embedding type</td><td><code>dense</code></td></tr>
+        <tr><td>Database</td><td><code>qdrant</code> (default)</td></tr>
+        <tr><td>Local DB</td><td><code>y</code> (default)</td></tr>
+        <tr><td>Embedding model</td><td><code>mxbai</code> (default)</td></tr>
+        <tr><td>Embedding size</td><td><code>1024</code> (default)</td></tr>
+        <tr><td>Open Telemetry</td><td><code>n</code> (default)</td></tr>
+        <tr><td style="color:var(--df-yellow);font-weight:700;">Run on local machine</td><td style="color:var(--df-yellow);font-weight:700;"><code>y</code> ← NOT default!</td></tr>
+        <tr><td>Elastic Search</td><td><code>n</code> (default)</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-top:0.8rem;">Images are pulling now…</p>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 5 — Install gemma (back to DFInfra)
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Install gemma <span class="tag-admin">admin</span></h2>
+    <p>Check if ollama service finished installing, then add the model.</p>
+    <img src="img/07-b-DFInfra-choose-gemma.png" alt="Choose gemma" />
+  </section>
+  <section>
+    <h2>gemma4:e2b</h2>
+    <img src="img/07-c-DFInfra-gemma-modal.png" alt="Gemma modal" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 6 — Start server + create admin
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Start the server <span class="tag-all">everyone</span></h2>
+    <span class="cmd">deepfellow server start</span>
+    <img src="img/08-CLI-server-create-admin.png" alt="Server start + create admin" />
+  </section>
+  <section>
+    <h2>Create admin account</h2>
+    <span class="cmd">deepfellow server create-admin</span>
+    <p style="margin-top:1rem;">Remember the credentials.</p>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 7 — DFServer UI
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>DFServer UI</h2>
+    <p><a href="http://localhost:8000" target="_blank">http://localhost:8000</a></p>
+    <img src="img/09-DFServerUI-localhost-8000.png" alt="DFServer UI login" />
+  </section>
+  <section>
+    <h2>Dashboard</h2>
+    <img src="img/10-DFServerUI-dasboard.png" alt="Dashboard" />
+  </section>
+  <section>
+    <h2>Create Organization</h2>
+    <img src="img/11-DFServerUI-create-organization.png" alt="Create organization" />
+  </section>
+  <section>
+    <h2>Create Project</h2>
+    <img src="img/12-DFServer-create-project.png" alt="Create project" />
+  </section>
+  <section>
+    <h2>Create &amp; copy API Key</h2>
+    <div class="two-col">
+      <img src="img/13-DFServerUI-project-create-API-key-button.png" alt="Create API Key" />
+      <img src="img/14-DFServerUI-create-API-Key-copy.png" alt="Copy API Key" />
+    </div>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 8 — Swagger / first API call
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Swagger docs</h2>
+    <p>Log in with the <strong>Project API Key</strong></p>
+    <img src="img/15-DFServer-Swagger-authorize.png" alt="Swagger authorize" />
+  </section>
+  <section>
+    <h2>Chat Completions → gemma4</h2>
+    <img src="img/16-DFServer-Swagger-Chat-Completions.png" alt="Chat Completions" />
+  </section>
+  <section>
+    <h2>Response ✅</h2>
+    <img src="img/16-DFServer-Swagger-Chat-Completions-Response.png" alt="Response" />
+    <p>Local DFServer → remote DFInfra on AWS</p>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 9 — Architecture checkpoint
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Architecture so far</h2>
+    <p>DFServer on laptop talks <strong>directly</strong> to DFInfra on AWS.</p>
+    <div style="font-family:monospace;font-size:1.4rem;margin:2rem 0;color:var(--df-green);">
+      💻 DFServer → ☁️ DFInfra (AWS)
+    </div>
+  </section>
+  <section>
+    <h2>Next: add local DFInfra</h2>
+    <p>Everyone installs DFInfra on their laptop and connects it via <strong>mesh</strong>.</p>
+    <div style="font-family:monospace;font-size:1.2rem;margin:2rem 0;color:var(--df-green);">
+      💻 DFServer<br>
+      💻 DFInfra (Child) ↔ ☁️ DFInfra (AWS)
+    </div>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 10 — Local DFInfra install
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Local DFInfra install <span class="tag-all">everyone</span></h2>
+    <img src="img/17-CLI-DFInfra-Install-and-start.png" alt="DFInfra install" />
+  </section>
+  <section>
+    <h2>Log in to local DFInfra</h2>
+    <p><a href="https://localhost:8086" target="_blank">https://localhost:8086</a></p>
+    <p>Copy the <strong>DFInfra Admin API Key</strong> → log in.</p>
+    <p>Switch on <strong>Cloud services</strong> → find openAI.</p>
+    <div class="two-col" style="margin-top:1rem;">
+      <img src="img/18-DFInfra-find-openAI.png" alt="Find openAI" />
+      <img src="img/18-DFInfra-install-openAI.png" alt="Install openAI" />
+    </div>
+  </section>
+  <section>
+    <h2>Install gpt-5-mini</h2>
+    <img src="img/19-DFInfra-instll-gpt-5-mini.png" alt="Install gpt-5-mini" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 11 — Expose via bore
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Expose DFInfra via bore</h2>
+    <p>AWS DFInfra needs to reach the local one — expose it first.</p>
+    <img src="img/20-bore-call.png" alt="bore call" />
+  </section>
+  <section>
+    <h2>Update the infra URL</h2>
+    <p>Navigate to <strong>bore.pub</strong> — you will see your local infra with openAI.</p>
+    <p>Change the URL in DFInfra settings:</p>
+    <div style="font-family:monospace;font-size:1.1rem;text-align:center;margin:1rem 0;">
+      <span style="color:var(--df-red);">http://infra:8086</span>
+      &nbsp;→&nbsp;
+      <span style="color:var(--df-green);">bore.pub:XXXX</span>
+    </div>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 12 — Mesh connect
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Set env vars</h2>
+    <p>In a second terminal — you need the <strong>INFRA_MESH_KEY</strong> from the chat.</p>
+    <img src="img/21-DFInfra-env-set.png" alt="env set" />
+  </section>
+  <section>
+    <h2>mesh connect</h2>
+    <p>Use <code>wss://</code> not <code>ws://</code></p>
+    <img src="img/22-DFInfra-connect.png" alt="infra connect" />
+  </section>
+  <section>
+    <h2>Verify mesh</h2>
+    <p>Check the local infra UI → mesh info</p>
+    <img src="img/23-DFInfra-mesh-info.png" alt="mesh info" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 13 — Call GPT via mesh
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Call GPT via mesh</h2>
+    <p>Back to Swagger — try <code>gpt-5-mini</code> (your alias)</p>
+    <img src="img/24-DFServer-swagger-call-gpt-5-mini.png" alt="Call gpt-5-mini" />
+  </section>
+  <section>
+    <h2>Response from GPT ✅</h2>
+    <img src="img/25-DFInfra-swagger-call-gpt-5-response.png" alt="GPT response" />
+    <p>DFServer → DFInfra (AWS) → DFInfra (Child) → OpenAI/GPT</p>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 14 — OTel logs
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Open Telemetry logs</h2>
+    <p>Let's look at what we installed at the beginning.</p>
+    <img src="img/26-a-otel-log.png" alt="OTel log" />
+  </section>
+  <section>
+    <h2>What we see</h2>
+    <ul>
+      <li>Input received by the server</li>
+      <li>Raw response from infra</li>
+    </ul>
+    <p style="margin-top:1.5rem;">Next: stop sending private data to the cloud.</p>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 15 — PII anonymization
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>PII anonymization</h2>
+    <p>Enable it for the GPT model:</p>
+    <pre><code class="language-bash">deepfellow server env set PLUGINS_SETUP \
+  '{"df_anonymize_models": ["gpt-5-mini"]}'</code></pre>
+  </section>
+  <section>
+    <h2>Test with personal data</h2>
+    <p>Add personal info in the system prompt → ask where <strong>John Smith</strong> lives.</p>
+    <img src="img/27-request-and-response-with-pii .png" alt="PII request and response" />
+  </section>
+  <section>
+    <h2>What anonymization does</h2>
+    <img src="img/28-otel-logs-for-anonimized-requst-and-response.png" alt="OTel logs anonymized" />
+    <p>Names replaced before leaving the server — restored in the response.</p>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 16 — df_infra_tap plugin
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>df_infra_tap plugin</h2>
+    <p>Install from the repo:</p>
+    <pre><code class="language-bash">cp -r server-plugins/df_infra_tap \
+  ~/.deepfellow/server/plugins/</code></pre>
+    <pre><code class="language-bash">deepfellow server restart</code></pre>
+  </section>
+  <section>
+    <h2>Tap the infra boundary</h2>
+    <p>Call GPT again, then switch to <strong>gemma</strong> (no anonymization) and ask the same question.</p>
+    <img src="img/29-plugin-instal-i-log.png" alt="Plugin install and log" />
+  </section>
+  <section>
+    <h2>What the tap shows</h2>
+    <ul>
+      <li><code>→ out to infra</code> — payload after anonymization</li>
+      <li><code>← in from infra</code> — raw response before deanonymization</li>
+    </ul>
+    <p style="margin-top:1.5rem;color:var(--df-green);">You can see both infras in the logs.</p>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     FIN
+═══════════════════════════════════════════════════════ -->
+<section>
+  <h2>That's it 🎉</h2>
+  <ul style="font-size:1rem;line-height:2.2;">
+    <li><a href="https://docs.deepfellow.ai" target="_blank">docs.deepfellow.ai</a></li>
+    <li><a href="https://vibekode.it/connecting-ai/reliable-ai-systems-deepfellow/" target="_blank">VibeKode workshop page</a></li>
+    <li><a href="https://hack.chat/?workshop-DF-Munich-2026" target="_blank">Workshop Chat</a></li>
+  </ul>
+</section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    controls: true,
+    progress: true,
+    slideNumber: 'c/t',
+    transition: 'slide',
+    transitionSpeed: 'fast',
+    plugins: [ RevealHighlight, RevealNotes ]
+  });
+</script>
+</body>
+</html>
