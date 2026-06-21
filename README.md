@@ -57,6 +57,7 @@ deepfellow server create-admin
 deepfellow infra install
 
 # Expose DFInfra via bore
+# In separate terminal
 bore local 8086 --to bore.pub
 
 # Update the INFRA_URL
@@ -64,7 +65,7 @@ deepfellow infra env set INFRA_URL http://bore.pub:4321
 deepfellow infra info
 
 # Connect Infras
-deepfellow infra connect wss://infra-01.workshop-demo.deepfellow.com <DF_MESH_KEY>
+deepfellow infra connect wss://<YOUR TEAM INFRA>.workshop-demo.deepfellow.com <DF_MESH_KEY>
 
 # df_infra_tap plugin
 cp -r server-plugins/df_infra_tap ~/.deepfellow/server/plugins/
