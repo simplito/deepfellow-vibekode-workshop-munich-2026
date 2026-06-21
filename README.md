@@ -16,6 +16,50 @@ DeepFellow is an open-source AI gateway with an OpenAI-compatible API and a plug
 
 Because the trainers built DeepFellow, you get answers straight from the source.
 
+## CLI Commands
+
+### Install
+
+```bash
+# DeepFellow CLI
+curl https://deepfellow.ai/install.sh | bash
+deepfellow
+
+# bore
+brew install ekzhang/bore/bore
+cargo install bore-cli
+```
+
+### DFServer
+
+```bash
+deepfellow server install
+deepfellow server start
+deepfellow server create-admin
+deepfellow server restart
+deepfellow server logs -f | grep "INFRA TAP"
+deepfellow server env set PLUGINS_SETUP '{"df_anonymize_models": ["gpt-5-mini"]}'
+```
+
+### DFInfra (local)
+
+```bash
+deepfellow infra install
+deepfellow infra env set INFRA_URL http://bore.pub:4321
+deepfellow infra info
+deepfellow infra connect wss://infra-01.workshop-demo.deepfellow.com <DF_MESH_KEY>
+```
+
+### bore + df_infra_tap
+
+```bash
+# Expose local DFInfra
+bore local 8086 --to bore.pub
+
+# Install plugin
+cp -r server-plugins/df_infra_tap ~/.deepfellow/server/plugins/
+```
+
 ## Links
 
 - [DeepFellow docs](https://docs.deepfellow.ai)

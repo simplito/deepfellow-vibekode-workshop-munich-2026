@@ -316,10 +316,11 @@ cargo install bore-cli</code></pre>
 ═══════════════════════════════════════════════════════ -->
 <section>
   <section>
-    <h2>Expose DFInfra via bore</h2>
+    <h2>Expose DFInfra via bore <span class="tag-all">everyone</span></h2>
     <p>AWS DFInfra needs to reach the local one, so we need to expose it first.</p>
+    <span class="cmd">bore local 8086 --to bore.pub</span>
     <img src="img/20-bore-call.png" alt="bore call" />
-    <p class="note">Navigate to <strong>bore.pub</strong> — you will see your local infra with openAI.</p>
+    <p class="note">Navigate to <strong>http://bore.pub:4321</strong>. You will see your local infra with GPT-5 model.</p>
   </section>
   <section>
     <h2>Update the INFRA_URL</h2>
@@ -329,6 +330,8 @@ cargo install bore-cli</code></pre>
       &nbsp;→&nbsp;
       <span style="color:var(--df-green);">http://bore.pub:XXXX</span>
     </div>
+    <pre><code class="language-bash">deepfellow infra env set INFRA_URL http://bore.pub:4321
+deepfellow infra info</code></pre>
     <img src="img/21-DFInfra-env-set.png" alt="env set" style="width:66%;" />
   </section>
 </section>
@@ -338,8 +341,8 @@ cargo install bore-cli</code></pre>
 ═══════════════════════════════════════════════════════ -->
 <section>
   <section>
-    <h2>mesh connect</h2>
-    <p>Use <code>wss://</code> not <code>ws://</code></p>
+    <h2>Connect Infras <span class="tag-all">everyone</span></h2>
+    <pre><code class="language-bash">deepfellow infra connect wss://infra-01.workshop-demo.deepfellow.com &lt;DF_MESH_KEY&gt;</code></pre>
     <img src="img/22-DFInfra-connect.png" alt="infra connect" />
   </section>
   <section>
@@ -354,45 +357,30 @@ cargo install bore-cli</code></pre>
 ═══════════════════════════════════════════════════════ -->
 <section>
   <section>
-    <h2>Call GPT via mesh</h2>
-    <p>Back to Swagger — try <code>gpt-5-mini</code> (your alias)</p>
+    <h2>Call GPT via mesh <span class="tag-all">everyone</span></h2>
+    <p>Back to Swagger — try <code>gpt-5-mini</code></p>
     <img src="img/24-DFServer-swagger-call-gpt-5-mini.png" alt="Call gpt-5-mini" />
   </section>
   <section>
     <h2>Response from GPT ✅</h2>
     <img src="img/25-DFInfra-swagger-call-gpt-5-response.png" alt="GPT response" />
-    <p>DFServer → DFInfra (AWS) → DFInfra (Child) → OpenAI/GPT</p>
+    <div style="font-family:monospace;font-size:1.1rem;margin:0.8rem 0;color:var(--df-green);">
+      💻 DFServer → ☁️ DFInfra (AWS) → 💻 DFInfra (Child) → 🤖 OpenAI/GPT
+    </div>
   </section>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════
-     SECTION 14 — OTel logs
+     SECTION 15 — df_infra_tap plugin
 ═══════════════════════════════════════════════════════ -->
 <section>
   <section>
-    <h2>Open Telemetry logs</h2>
-    <p>Let's look at what we installed at the beginning.</p>
-    <img src="img/26-a-otel-log.png" alt="OTel log" />
-  </section>
-  <section>
-    <h2>What we see</h2>
-    <ul>
-      <li>Input received by the server</li>
-      <li>Raw response from infra</li>
-    </ul>
-    <p style="margin-top:1.5rem;">Next: stop sending private data to the cloud.</p>
-  </section>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     SECTION 15 — PII anonymization
-═══════════════════════════════════════════════════════ -->
-<section>
-  <section>
-    <h2>PII anonymization</h2>
-    <p>Enable it for the GPT model:</p>
-    <pre><code class="language-bash">deepfellow server env set PLUGINS_SETUP \
-  '{"df_anonymize_models": ["gpt-5-mini"]}'</code></pre>
+    <h2>df_infra_tap plugin <span class="tag-all">everyone</span></h2>
+    <p>From the <code>deepfellow-vibekode-workshop-munich-2026</code> directory:</p>
+    <pre><code class="language-bash">cp -r server-plugins/df_infra_tap ~/.deepfellow/server/plugins/
+deepfellow server restart
+deepfellow server logs -f | grep "INFRA TAP"</code></pre>
+    <img src="img/slajd-39-initialize-tap-infra.png" alt="INFRA TAP initialized" />
   </section>
   <section>
     <h2>Test with personal data</h2>
@@ -400,27 +388,8 @@ cargo install bore-cli</code></pre>
     <img src="img/27-request-and-response-with-pii .png" alt="PII request and response" />
   </section>
   <section>
-    <h2>What anonymization does</h2>
-    <img src="img/28-otel-logs-for-anonimized-requst-and-response.png" alt="OTel logs anonymized" />
-    <p>Names replaced before leaving the server — restored in the response.</p>
-  </section>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════
-     SECTION 16 — df_infra_tap plugin
-═══════════════════════════════════════════════════════ -->
-<section>
-  <section>
-    <h2>df_infra_tap plugin</h2>
-    <p>Install from the repo:</p>
-    <pre><code class="language-bash">cp -r server-plugins/df_infra_tap \
-  ~/.deepfellow/server/plugins/</code></pre>
-    <pre><code class="language-bash">deepfellow server restart</code></pre>
-  </section>
-  <section>
     <h2>Tap the infra boundary</h2>
-    <p>Call GPT again, then switch to <strong>gemma</strong> (no anonymization) and ask the same question.</p>
-    <img src="img/29-plugin-instal-i-log.png" alt="Plugin install and log" />
+    <img src="img/slide-40-call-with-plugin-without-pii.png" alt="Call with plugin without PII" />
   </section>
   <section>
     <h2>What the tap shows</h2>
@@ -428,7 +397,22 @@ cargo install bore-cli</code></pre>
       <li><code>→ out to infra</code> — payload after anonymization</li>
       <li><code>← in from infra</code> — raw response before deanonymization</li>
     </ul>
-    <p style="margin-top:1.5rem;color:var(--df-green);">You can see both infras in the logs.</p>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 16 — PII anonymization
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>PII anonymization <span class="tag-all">everyone</span></h2>
+    <p>Enable the built-in anonymize plugin for the GPT model:</p>
+    <pre><code class="language-bash">deepfellow server env set PLUGINS_SETUP '{"df_anonymize_models": ["gpt-5-mini"]}'</code></pre>
+  </section>
+  <section>
+    <h2>Tapped anonymized personal data</h2>
+    <p>Call GPT model again, then switch to Gemma and make the same request</p>
+    <img src="img/slide-40-call-with-plugin.png" alt="Tapped anonymized personal data" />
   </section>
 </section>
 
