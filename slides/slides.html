@@ -134,8 +134,8 @@ cargo install bore-cli</code></pre>
 <section>
   <section>
     <h2>CLI install <span class="tag-all">everyone</span></h2>
-    <p>All commands are in <code>README.md</code></p>
-    <img src="img/05-CLI-install.png" alt="CLI install" />
+    <span class="cmd">curl https://deepfellow.ai/install.sh | bash</span>
+    <img src="img/05-CLI-install.png" alt="CLI install" style="width:75%;" />
   </section>
   <section>
     <h2>Run the CLI</h2>
@@ -150,8 +150,9 @@ cargo install bore-cli</code></pre>
 <section>
   <section>
     <h2>DFServer install <span class="tag-all">everyone</span></h2>
+    <span class="cmd">deepfellow server install</span>
     <p>You need <strong>DFInfra URL</strong> and <strong>DFInfra API Key</strong> from the chat.</p>
-    <img src="img/07-a-CLI-server-install.png" alt="Server install" />
+    <img src="img/07-a-CLI-server-install.png" alt="Server install" style="width:75%;" />
   </section>
   <section>
     <h2>Install options</h2>
@@ -170,7 +171,7 @@ cargo install bore-cli</code></pre>
         <tr><td>Elastic Search</td><td><code>n</code> (default)</td></tr>
       </tbody>
     </table>
-    <p class="note" style="margin-top:0.8rem;">Images are pulling now…</p>
+    <p class="note" style="margin-top:0.8rem;">Images are pulling now, so let's see how our infra is doing</p>
   </section>
 </section>
 
@@ -180,12 +181,18 @@ cargo install bore-cli</code></pre>
 <section>
   <section>
     <h2>Install gemma <span class="tag-admin">admin</span></h2>
-    <p>Check if ollama service finished installing, then add the model.</p>
+    <p>Check if ollama service finished installing, then add the <code>gemma4:e4b</code> model.</p>
     <img src="img/07-b-DFInfra-choose-gemma.png" alt="Choose gemma" />
   </section>
   <section>
-    <h2>gemma4:e2b</h2>
+    <h2>gemma4:e4b</h2>
+    <p class="note">Add <code>-1</code> to how long it should stay in memory</p>
     <img src="img/07-c-DFInfra-gemma-modal.png" alt="Gemma modal" />
+  </section>
+  <section>
+    <h2>Test the model</h2>
+    <p>Run test to see if the model is installed correctly</p>
+    <img src="img/slide-17-test-gemma.png" alt="Test gemma" />
   </section>
 </section>
 
@@ -196,12 +203,9 @@ cargo install bore-cli</code></pre>
   <section>
     <h2>Start the server <span class="tag-all">everyone</span></h2>
     <span class="cmd">deepfellow server start</span>
-    <img src="img/08-CLI-server-create-admin.png" alt="Server start + create admin" />
-  </section>
-  <section>
-    <h2>Create admin account</h2>
     <span class="cmd">deepfellow server create-admin</span>
-    <p style="margin-top:1rem;">Remember the credentials.</p>
+    <p class="note" style="margin-top:0.6rem;">Remember the credentials.</p>
+    <img src="img/08-CLI-server-create-admin.png" alt="Server start + create admin" />
   </section>
 </section>
 
@@ -210,13 +214,18 @@ cargo install bore-cli</code></pre>
 ═══════════════════════════════════════════════════════ -->
 <section>
   <section>
-    <h2>DFServer UI</h2>
+    <h2>DFServer UI <span class="tag-all">everyone</span></h2>
     <p><a href="http://localhost:8000" target="_blank">http://localhost:8000</a></p>
-    <img src="img/09-DFServerUI-localhost-8000.png" alt="DFServer UI login" />
+    <img src="img/09-DFServerUI-localhost-8000.png" alt="DFServer UI login" style="width:66%;" />
   </section>
   <section>
     <h2>Dashboard</h2>
-    <img src="img/10-DFServerUI-dasboard.png" alt="Dashboard" />
+    <img src="img/10-DFServerUI-dasboard.png" alt="Dashboard" style="width:66%;" />
+  </section>
+  <section>
+    <h2 style="color:var(--df-yellow);">TODO</h2>
+    <p>Diagram or table showing the hierarchy:</p>
+    <p style="color:#6b7280;">Admin → Organization → Project → API Key</p>
   </section>
   <section>
     <h2>Create Organization</h2>
@@ -240,7 +249,7 @@ cargo install bore-cli</code></pre>
 ═══════════════════════════════════════════════════════ -->
 <section>
   <section>
-    <h2>Swagger docs</h2>
+    <h2>Swagger docs <span class="tag-all">everyone</span></h2>
     <p>Log in with the <strong>Project API Key</strong></p>
     <img src="img/15-DFServer-Swagger-authorize.png" alt="Swagger authorize" />
   </section>
@@ -269,9 +278,8 @@ cargo install bore-cli</code></pre>
   <section>
     <h2>Next: add local DFInfra</h2>
     <p>Everyone installs DFInfra on their laptop and connects it via <strong>mesh</strong>.</p>
-    <div style="font-family:monospace;font-size:1.2rem;margin:2rem 0;color:var(--df-green);">
-      💻 DFServer<br>
-      💻 DFInfra (Child) ↔ ☁️ DFInfra (AWS)
+    <div style="font-family:monospace;font-size:1.3rem;margin:2rem 0;color:var(--df-green);">
+      💻 DFServer → ☁️ DFInfra (AWS) ↔ 💻 DFInfra (Child)
     </div>
   </section>
 </section>
@@ -282,13 +290,16 @@ cargo install bore-cli</code></pre>
 <section>
   <section>
     <h2>Local DFInfra install <span class="tag-all">everyone</span></h2>
-    <img src="img/17-CLI-DFInfra-Install-and-start.png" alt="DFInfra install" />
+    <span class="cmd">deepfellow infra install</span>
+    <p class="note">Answer <code>[y]</code> to the question if it's safe to show the secrets here</p>
+    <img src="img/17-CLI-DFInfra-Install-and-start.png" alt="DFInfra install" style="width:66%;" />
   </section>
   <section>
     <h2>Log in to local DFInfra</h2>
     <p><a href="https://localhost:8086" target="_blank">https://localhost:8086</a></p>
     <p>Copy the <strong>DFInfra Admin API Key</strong> → log in.</p>
     <p>Switch on <strong>Cloud services</strong> → find openAI.</p>
+    <p class="note">OpenAI API Key is on the chat</p>
     <div class="two-col" style="margin-top:1rem;">
       <img src="img/18-DFInfra-find-openAI.png" alt="Find openAI" />
       <img src="img/18-DFInfra-install-openAI.png" alt="Install openAI" />
@@ -306,18 +317,19 @@ cargo install bore-cli</code></pre>
 <section>
   <section>
     <h2>Expose DFInfra via bore</h2>
-    <p>AWS DFInfra needs to reach the local one — expose it first.</p>
+    <p>AWS DFInfra needs to reach the local one, so we need to expose it first.</p>
     <img src="img/20-bore-call.png" alt="bore call" />
+    <p class="note">Navigate to <strong>bore.pub</strong> — you will see your local infra with openAI.</p>
   </section>
   <section>
-    <h2>Update the infra URL</h2>
-    <p>Navigate to <strong>bore.pub</strong> — you will see your local infra with openAI.</p>
+    <h2>Update the INFRA_URL</h2>
     <p>Change the URL in DFInfra settings:</p>
-    <div style="font-family:monospace;font-size:1.1rem;text-align:center;margin:1rem 0;">
+    <div style="font-family:monospace;font-size:1.1rem;text-align:center;margin:0.8rem 0;">
       <span style="color:var(--df-red);">http://infra:8086</span>
       &nbsp;→&nbsp;
-      <span style="color:var(--df-green);">bore.pub:XXXX</span>
+      <span style="color:var(--df-green);">http://bore.pub:XXXX</span>
     </div>
+    <img src="img/21-DFInfra-env-set.png" alt="env set" style="width:66%;" />
   </section>
 </section>
 
@@ -325,11 +337,6 @@ cargo install bore-cli</code></pre>
      SECTION 12 — Mesh connect
 ═══════════════════════════════════════════════════════ -->
 <section>
-  <section>
-    <h2>Set env vars</h2>
-    <p>In a second terminal — you need the <strong>INFRA_MESH_KEY</strong> from the chat.</p>
-    <img src="img/21-DFInfra-env-set.png" alt="env set" />
-  </section>
   <section>
     <h2>mesh connect</h2>
     <p>Use <code>wss://</code> not <code>ws://</code></p>
