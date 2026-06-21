@@ -25,9 +25,25 @@ Because the trainers built DeepFellow, you get answers straight from the source.
 curl https://deepfellow.ai/install.sh | bash
 deepfellow
 
-# bore
-brew install ekzhang/bore/bore
+```
+
+### bore
+
+```bash
+# macOS
+brew install bore-cli
+
+# Cargo (all platforms)
 cargo install bore-cli
+
+# Arch Linux
+yay -S bore
+
+# Gentoo
+sudo emerge net-proxy/bore
+
+# Prebuilt binaries (Linux, macOS)
+# https://github.com/ekzhang/bore/releases
 ```
 
 ### DFServer
