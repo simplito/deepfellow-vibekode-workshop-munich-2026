@@ -1,0 +1,53 @@
+Ixekizumab (Taltz) — Summary of Product Characteristics
+
+Pharmacotherapeutic group: immunosuppressants, interleukin inhibitors.
+Mechanism of action: Ixekizumab is a humanized IgG4 monoclonal antibody that
+selectively binds to the cytokine interleukin-17A (IL-17A) and neutralizes it.
+Ixekizumab is an IL-17A antagonist. By blocking IL-17A it inhibits the release of
+pro-inflammatory cytokines and chemokines, interrupting the inflammatory cascade
+driven by the IL-17 pathway. Ixekizumab does not bind the ligands IL-17B, IL-17C,
+IL-17D or IL-17F; its action is directed exclusively at IL-17A. It is a representative
+example of a biologic drug that inhibits IL-17.
+
+Therapeutic indications:
+- Moderate to severe plaque psoriasis in adults who are candidates for systemic therapy.
+- Psoriatic arthritis (PsA), as monotherapy or in combination with methotrexate.
+- Axial spondyloarthritis, including ankylosing spondylitis.
+The efficacy in these indications results from inhibition of the IL-17A axis, which
+plays a key role in the pathogenesis of psoriasis.
+
+Posology:
+Plaque psoriasis: a starting dose of 160 mg (two 80 mg injections) at week 0, then
+80 mg at weeks 2, 4, 6, 8, 10 and 12, followed by a maintenance dose of 80 mg every
+4 weeks. The medicine is administered subcutaneously. After training the patient may
+self-administer injections using a pre-filled pen.
+
+Adverse reactions:
+The most frequently reported are injection-site reactions and upper respiratory tract
+infections (nasopharyngitis). Because IL-17A is involved in defence against pathogens,
+inhibition of IL-17A by Ixekizumab increases the risk of fungal infections, especially
+mucosal candidiasis. Cases of exacerbation of inflammatory bowel disease have also been
+observed. Active tuberculosis must be ruled out before starting treatment.
+
+Contraindications:
+Hypersensitivity to the active substance, clinically important active infection (e.g.
+active tuberculosis). Concomitant use of live vaccines is not recommended.
+
+Special warnings and precautions for use:
+The medicine should be used under the supervision of a physician experienced in the
+diagnosis and treatment of conditions for which Ixekizumab is indicated. Because IL-17A
+blockade affects mucosal immunity, patients should be monitored for signs of infection
+during and after treatment. In the event of a serious infection, treatment should be
+interrupted until it resolves. Particular caution is advised in patients with a history
+of inflammatory bowel disease, as exacerbations related to inhibition of the IL-17
+pathway have been reported.
+
+Clinical efficacy:
+In the pivotal UNCOVER trials a large proportion of patients treated with Ixekizumab
+achieved a PASI 90 response, and many patients achieved complete clearance of psoriatic
+lesions (PASI 100). These results confirm the central role of the cytokine IL-17A in
+the pathogenesis of psoriasis and the high efficacy of biologic drugs targeting IL-17.
+
+Summary: Ixekizumab is a modern biologic drug, a selective IL-17A antagonist, used
+primarily in psoriasis and psoriatic arthritis. It belongs to the class of IL-17
+inhibitors alongside secukinumab and bimekizumab.

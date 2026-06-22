@@ -1,0 +1,50 @@
+Ustekinumab (Stelara) — Summary of Product Characteristics
+
+Pharmacotherapeutic group: immunosuppressants, interleukin inhibitors.
+Mechanism of action: Ustekinumab is a fully human IgG1 monoclonal antibody that binds
+with high affinity to the shared p40 protein subunit of the cytokines interleukin-12
+(IL-12) and interleukin-23 (IL-23). Ustekinumab is an IL-12/23 antagonist. By blocking
+the p40 subunit, the drug prevents these cytokines from binding to the IL-12R-beta1
+receptor on the surface of immune cells and inhibits the differentiation of Th1 and Th17
+lymphocytes. The drug acts higher in the inflammatory cascade than direct inhibitors of
+effector cytokines.
+
+Therapeutic indications:
+- Moderate to severe plaque psoriasis in adults and children.
+- Psoriatic arthritis.
+- Moderate to severe Crohn's disease.
+- Ulcerative colitis.
+Ustekinumab is a biologic drug with a well-established position in the treatment of
+psoriasis.
+
+Posology:
+In psoriasis for patients weighing up to 100 kg: 45 mg subcutaneously at weeks 0 and 4,
+then every 12 weeks. For patients over 100 kg a dose of 90 mg is used. The infrequent
+maintenance dosing (every 12 weeks) is an important advantage of this drug compared with
+other biologics.
+
+Adverse reactions:
+The most common include upper respiratory tract infections, nasopharyngitis, headache,
+diarrhoea and injection-site reactions. Because the drug affects the immune system, it
+increases the risk of infection. Screening for tuberculosis before starting therapy and
+updating vaccinations are recommended.
+
+Contraindications:
+Hypersensitivity to the active substance, clinically important active infection.
+
+Special warnings and precautions for use:
+Before starting treatment the patient should be evaluated for tuberculosis. Given the
+immunomodulatory mechanism of action, caution is advised in patients with recurrent
+infections. Rare cases of hypersensitivity reactions, including anaphylaxis, have been
+reported.
+
+Clinical efficacy:
+In the PHOENIX trials Ustekinumab demonstrated high and durable efficacy in the
+treatment of plaque psoriasis, with a PASI 75 response maintained for many months on
+12-weekly dosing. Targeting the p40 subunit shared by IL-12 and IL-23 provides broad
+action on the early stages of the inflammatory cascade in psoriasis.
+
+Summary: Ustekinumab is a biologic drug targeting the p40 subunit shared by IL-12 and
+IL-23, used in psoriasis, psoriatic arthritis and inflammatory bowel disease. It
+represents an older generation of interleukin biologics than the selective IL-23
+inhibitors (e.g. guselkumab).

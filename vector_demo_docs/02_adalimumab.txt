@@ -1,0 +1,52 @@
+Adalimumab (Humira) — Summary of Product Characteristics
+
+Pharmacotherapeutic group: immunosuppressants, tumour necrosis factor alpha (TNF-alpha)
+inhibitors.
+Mechanism of action: Adalimumab is a recombinant, fully human IgG1 monoclonal antibody.
+It binds specifically to tumour necrosis factor alpha (TNF-alpha) and neutralizes its
+biological activity by blocking its interaction with the p55 and p75 cell-surface
+receptors. Adalimumab is a TNF-alpha antagonist. TNF-alpha is a pro-inflammatory
+cytokine of central importance in chronic inflammatory diseases. The drug does not act
+on the interleukin pathway.
+
+Therapeutic indications:
+- Moderate to severe rheumatoid arthritis (RA).
+- Moderate to severe plaque psoriasis in adults.
+- Psoriatic arthritis.
+- Crohn's disease and ulcerative colitis.
+- Ankylosing spondylitis.
+Adalimumab is a biologic drug widely used in rheumatology, dermatology and
+gastroenterology.
+
+Posology:
+In psoriasis: a starting dose of 80 mg subcutaneously, then 40 mg every other week,
+beginning one week after the initial dose. In rheumatoid arthritis, typically 40 mg
+every other week, often in combination with methotrexate. The drug is given by
+subcutaneous injection using a pre-filled syringe or pen.
+
+Adverse reactions:
+The most common are infections (upper respiratory tract, sinusitis), injection-site
+reactions, headache and musculoskeletal complaints. Inhibition of TNF-alpha increases
+the risk of serious bacterial infections, reactivation of tuberculosis and reactivation
+of hepatitis B. Screening for latent tuberculosis is mandatory before treatment.
+
+Contraindications:
+Hypersensitivity to the active substance, active tuberculosis or other severe
+infections, moderate to severe heart failure (NYHA class III/IV).
+
+Special warnings and precautions for use:
+Before starting treatment and periodically during it, patients should be screened for
+tuberculosis, including the latent form. TNF-alpha inhibition may mask the symptoms of
+infection, so close monitoring is required. Caution should be exercised in patients with
+demyelinating disorders and in those with a history of recurrent infections.
+
+Clinical efficacy:
+For over a decade Adalimumab has been a standard in the treatment of moderate and severe
+plaque psoriasis, demonstrating significant improvement in the PASI score compared with
+placebo. As a TNF-alpha inhibitor it acts broadly on the inflammatory cascade, which
+explains its efficacy across many disease entities in rheumatology, dermatology and
+gastroenterology.
+
+Summary: Adalimumab is a biologic drug from the TNF-alpha inhibitor group, used among
+others in psoriasis, psoriatic arthritis and RA. It belongs to the same family as
+infliximab and etanercept.

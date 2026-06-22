@@ -1,0 +1,104 @@
+[project]
+name = "patient-database-mcp"
+version = "1.0.0"
+description = "MCP server exposing synthetic patient database for psoriasis risk queries"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastmcp>=3.2.0",
+    "pydantic>=2.12.5",
+    "uvicorn>=0.42.0",
+]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.408",
+    "ruff>=0.15.8",
+]
+
+[tool.ruff]
+exclude = [
+    ".direnv",
+    ".git",
+    ".git-rewrite",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".venv",
+    ".vscode",
+]
+line-length = 140
+indent-width = 4
+target-version = "py313"
+
+[tool.ruff.lint]
+ignore = [
+    "ANN204",
+    "ISC001",
+    "D101",
+    "D106",
+    "D107",
+    "D203",
+    "D213",
+    "D301",
+    "D413",
+    "EM101",
+    "RUF012",
+    "TRY003",
+]
+select = [
+    "ANN",
+    "ARG",
+    "B",
+    "C4",
+    "C90",
+    "D",
+    "DTZ",
+    "E",
+    "EM",
+    "F",
+    "G",
+    "I",
+    "ISC",
+    "LOG",
+    "N",
+    "PIE",
+    "PT",
+    "PTH",
+    "RET",
+    "RUF",
+    "Q",
+    "SIM",
+    "T10",
+    "T201",
+    "TCH",
+    "TRY",
+    "UP",
+]
+
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D", "ANN", "ARG"]
+"generate_patients.py" = ["T201"]
+
+[tool.pyright]
+exclude = ["**/__pycache__"]
+venvPath = "."
+venv = ".venv"
+typeCheckingMode = "strict"
+reportMissingImports = "error"
+reportUnusedVariable = "error"
+reportMissingTypeArgument = "none"
+reportUnknownArgumentType = "none"
+reportUnknownLambdaType = "none"
+reportUnknownMemberType = "none"
+reportUnknownParameterType = "none"
+reportUnknownVariableType = "none"
+reportUnnecessaryIsInstance = "none"
+reportMissingTypeStubs = "none"
+
+[tool.uv]
+exclude-newer = "1 week"

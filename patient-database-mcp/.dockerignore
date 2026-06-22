@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+patients.db
+.git/
+.gitignore
+README.md

@@ -1,0 +1,49 @@
+Tofacitinib (Xeljanz) — Summary of Product Characteristics
+
+Pharmacotherapeutic group: selective immunosuppressants, Janus kinase (JAK) inhibitors.
+Mechanism of action: Tofacitinib is a small-molecule, oral inhibitor of Janus kinases
+(JAK). It inhibits primarily JAK1 and JAK3, and to a lesser extent JAK2. JAK kinases
+transmit intracellular signals from the receptors of cytokines and growth factors
+involved in haematopoiesis and immune cell function. By inhibiting the JAK-STAT pathway
+tofacitinib modulates the inflammatory response. Unlike monoclonal antibodies it is not
+a biologic drug but a synthetic molecule taken orally.
+
+Therapeutic indications:
+- Moderate to severe rheumatoid arthritis (RA).
+- Psoriatic arthritis.
+- Ulcerative colitis.
+- Juvenile idiopathic arthritis.
+Tofacitinib is usually used in patients with an inadequate response to methotrexate or
+biologic drugs.
+
+Posology:
+In rheumatoid and psoriatic arthritis, the standard is 5 mg twice daily orally, or 11 mg
+once daily in the extended-release form. The dose is adjusted according to renal and
+hepatic function and concomitant medicines.
+
+Adverse reactions:
+The most common are infections (including herpes zoster), headache, arterial
+hypertension, and elevations of liver enzymes and lipid levels. The drug carries a
+warning regarding an increased risk of serious cardiovascular events, thrombosis and
+malignancies, especially in patients over 65 years of age.
+
+Contraindications:
+Active tuberculosis, severe infections, severe hepatic impairment, pregnancy and
+breastfeeding.
+
+Special warnings and precautions for use:
+Before starting treatment, screening for tuberculosis and viral hepatitis should be
+performed. During therapy, monitoring of the blood count, liver parameters and lipid
+profile is recommended. Given the warnings concerning cardiovascular events and
+thrombosis, the drug is used with caution in patients with risk factors.
+
+Clinical efficacy:
+In the ORAL trial programmes tofacitinib demonstrated efficacy in reducing disease
+activity in rheumatoid and psoriatic arthritis, including in patients with an inadequate
+response to biologic drugs. As an oral small molecule it provides an alternative to
+injectable therapies, offering a different mechanism of action based on inhibition of
+the intracellular JAK-STAT pathway.
+
+Summary: Tofacitinib is an oral Janus kinase (JAK) inhibitor used in rheumatic and
+inflammatory bowel diseases. It acts on the intracellular cytokine signalling pathway
+rather than directly on a single extracellular cytokine.
