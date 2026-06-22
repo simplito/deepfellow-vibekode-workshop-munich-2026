@@ -84,6 +84,9 @@ deepfellow server logs -f | grep "INFRA TAP"
 
 # PII anonymization
 deepfellow server env set PLUGINS_SETUP '{"df_anonymize_models": ["gpt-5-mini"]}'
+
+# MCP Patient database
+docker compose up -d --build
 ```
 
 ## Links
@@ -91,4 +94,3 @@ deepfellow server env set PLUGINS_SETUP '{"df_anonymize_models": ["gpt-5-mini"]}
 - [DeepFellow docs](https://docs.deepfellow.ai)
 - [VibeKode workshop page](https://vibekode.it/connecting-ai/reliable-ai-systems-deepfellow/)
 - [Workshop Chat](https://hack.chat/?workshop-DF-Munich-2026)
-
