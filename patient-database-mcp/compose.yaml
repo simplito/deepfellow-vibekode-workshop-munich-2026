@@ -2,5 +2,5 @@ services:
     patient-database-mcp:
         build: .
         ports:
-            - "8001:8000"
+            - "8001:8001"
         restart: unless-stopped
