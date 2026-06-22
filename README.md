@@ -12,7 +12,9 @@ No prior DeepFellow experience required. Familiarity with the command line is en
 
 ## What is DeepFellow?
 
-DeepFellow is an open-source AI gateway with an OpenAI-compatible API and a plugin system for anonymization, routing, and observability. It lets you orchestrate multiple models for different tasks, apply access control, and keep full control over how AI is used inside your deployments, whether you are building internal tools, customer-facing features, or regulated on-prem systems.
+DeepFellow is a modular framework made of components. Each component is independent. Use one. Use a few. Use them all. Combine them the way your architecture demands. Scale up, scale down, but never lose control over your data and costs.
+
+Production-ready infrastructure for self-hosted AI deployments. Full data sovereignty, built-in compliance, OpenAI-compatible API.
 
 Because the trainers built DeepFellow, you get answers straight from the source.
 
