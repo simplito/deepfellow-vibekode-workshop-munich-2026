@@ -85,8 +85,15 @@ deepfellow server logs -f | grep "INFRA TAP"
 # PII anonymization
 deepfellow server env set PLUGINS_SETUP '{"df_anonymize_models": ["gpt-5-mini"]}'
 
-# MCP Patient database
+# Audit — vector stores (Block 2)
+deepfellow otel logs -f
+
+# MCP Patient database (Block 3)
+# In patient-database-mcp/ directory
 docker compose up -d --build
+
+# Audit — MCP (Block 3)
+deepfellow otel logs -f --tail 1000
 ```
 
 ## Links
