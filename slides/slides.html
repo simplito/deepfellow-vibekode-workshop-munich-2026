@@ -454,6 +454,438 @@ deepfellow server logs -f | grep "INFRA TAP"</code></pre>
 </section>
 
 <!-- ═══════════════════════════════════════════════════════
+     SECTION 17 — Block 2: Prepare notepad
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Block 2 — Vector Search</h2>
+    <ul>
+      <li>Open your favorite text editor to note down some <strong>ids</strong> later on</li>
+    </ul>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 18 — Install embedding model
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Install embedding model <span class="tag-admin">admin</span></h2>
+    <p>On the AWS infra, install <code>mxbai-embed-large</code> — size <code>1024</code>.</p>
+    <img src="img/infra-embedding-model-install.png" alt="Install embedding model" />
+  </section>
+  <section>
+    <h2>Test the embedding model</h2>
+    <p>Click the three dots, then the <strong>Test</strong> button.</p>
+    <img src="img/infra-embedding-model-test.png" alt="Embedding model test" />
+  </section>
+  <section>
+    <h2>Test success ✅</h2>
+    <p>The model returns an embedding vector.</p>
+    <img src="img/infra-embedding-model-test-success.png" alt="Embedding model test success" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 19 — Upload files
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Upload files <span class="tag-all">everyone</span></h2>
+    <p>Head to DFServer Swagger — <a href="http://localhost:8000/docs" target="_blank">localhost:8000/docs</a></p>
+    <img src="img/server-files-group.png" alt="Files group" />
+  </section>
+  <section>
+    <h2>POST /upload</h2>
+    <p>Find the <strong>Files</strong> group, open the <code>POST /upload</code> endpoint, click <strong>Try it out</strong>.</p>
+    <img src="img/server-files-upload-try.png" alt="Files upload try it out" />
+  </section>
+  <section>
+    <h2>Upload files</h2>
+    <p>From <code>vector_demo_docs/</code> in your cloned repo — repeat for each file:</p>
+    <ul>
+      <li>Click <strong>Choose file</strong> and select the file</li>
+      <li>Click <strong>Execute</strong></li>
+    </ul>
+    <img src="img/server-files-upload-execute.png" alt="Files upload execute" />
+  </section>
+  <section>
+    <h2>File <code>id</code> on success</h2>
+    <img src="img/server-files-upload-success.png" alt="Files upload success" />
+  </section>
+  <section>
+    <h2>List uploaded files</h2>
+    <p>List uploaded files using the <code>GET</code> endpoint.</p>
+    <img src="img/server-files-list-tab.png" alt="Files list tab" />
+  </section>
+  <section>
+    <h2>Note each file <code>id</code></h2>
+    <p>Click <strong>Try it out</strong>, then <strong>Execute</strong> — note the <code>id</code> for each file in the response.</p>
+    <img src="img/server-files-list-success.png" alt="Files list success" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 20 — Add files to a vector store
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Add files to a vector store <span class="tag-all">everyone</span></h2>
+    <p>Find the <strong>Vector Stores</strong> group, use the <code>POST</code> endpoint to create a vector store.</p>
+    <img src="img/server-vector-stores-create-tab.png" alt="Vector stores create tab" />
+  </section>
+  <section>
+    <h2>Create body</h2>
+    <pre><code class="language-json">{
+  "name": "workshop",
+  "file_ids": ["id_1", "id_2", "id_3", "id_4"]
+}</code></pre>
+    <img src="img/server-vector-stores-create-body.png" alt="Vector stores create body" />
+  </section>
+  <section>
+    <h2>Result ✅</h2>
+    <p>You should see <code>"total": 4</code> in the response.</p>
+    <img src="img/server-vector-stores-create-result.png" alt="Vector stores create result" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 21 — Check the processing status
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Check the processing status <span class="tag-all">everyone</span></h2>
+    <p>Use the <code>GET</code> endpoint to get the <code>id</code> of the created vector store.</p>
+    <img src="img/server-vector-stores-list.png" alt="Vector stores list" />
+  </section>
+  <section>
+    <h2>Vector store <code>id</code></h2>
+    <p>Note the <code>id</code> from the response.</p>
+    <img src="img/server-vector-stores-list-success.png" alt="Vector stores list success" />
+  </section>
+  <section>
+    <h2>List vector store files</h2>
+    <p>Find the <code>GET /v1/vector_stores/{vector_store_id}/files</code> endpoint.</p>
+    <img src="img/server-vector-store-files-list.png" alt="Vector store files list" />
+  </section>
+  <section>
+    <h2>Per-file status</h2>
+    <p>Call it to check the status of each file.</p>
+    <img src="img/server-vector-store-files-list-success.png" alt="Vector store files list success" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 22 — Vector Search
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Vector Search <span class="tag-all">everyone</span></h2>
+    <p>Find the <code>POST /v1/vector_stores/{vector_store_id}/search</code> endpoint.</p>
+    <img src="img/server-vector-store-search.png" alt="Vector store search endpoint" />
+  </section>
+  <section>
+    <h2>Search params</h2>
+    <p>Enter the vector store <code>id</code> in the parameter field and the body:</p>
+    <ul>
+      <li><code>"psoriasis treatment"</code> as the query</li>
+      <li><code>"max_num_results": 3</code></li>
+    </ul>
+    <img src="img/server-vector-store-search-params.png" alt="Vector store search params" />
+  </section>
+  <section>
+    <h2>Matched chunks ✅</h2>
+    <p>The response shows matched chunks with filenames and relevance scores.</p>
+    <img src="img/server-vector-store-search-result.png" alt="Vector store search result" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 23 — Audit: vector stores
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Audit — vector stores <span class="tag-all">everyone</span></h2>
+    <p>Open a new terminal and find entries related to the vector stores.</p>
+    <span class="cmd">deepfellow otel logs -f</span>
+    <img src="img/otel-vector-store.png" alt="OTel vector store logs" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 24 — Block 3: Create a toolbox
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Block 3 — MCP toolbox <span class="tag-all">everyone</span></h2>
+    <p>Open <a href="http://localhost:8000" target="_blank">http://localhost:8000</a> → click the <strong>Organizations</strong> tab.</p>
+    <img src="img/mcp-org.png" alt="Organizations tab" />
+  </section>
+  <section>
+    <h2>Open the project view</h2>
+    <p>Click <strong>View details</strong> to open the organization, then <strong>View details</strong> again to open the project.</p>
+    <img src="img/mcp-proj-details.png" alt="Project details" />
+  </section>
+  <section>
+    <h2>New toolbox</h2>
+    <p>Scroll down to the <strong>Toolboxes</strong> tab → click <strong>New toolbox</strong>.</p>
+    <img src="img/mcp-toolbox-create.png" alt="Create toolbox" />
+  </section>
+  <section>
+    <h2>Add a tool</h2>
+    <p>Set name <code>Workshop</code>, click <strong>Create</strong>, then <strong>+Tool</strong>.</p>
+    <img src="img/mcp-tool-button.png" alt="Add tool button" />
+  </section>
+  <section>
+    <h2>Configure the tool</h2>
+    <ul>
+      <li><strong>Type</strong>: File Search</li>
+      <li><strong>Vector Store</strong>: the <code>workshop</code> store from Block 2</li>
+      <li><strong>Max results</strong>: <code>5</code></li>
+    </ul>
+    <img src="img/mcp-tool-create.png" alt="Configure tool" />
+  </section>
+  <section>
+    <h2>Tool created ✅</h2>
+    <img src="img/mcp-tool-create-success.png" alt="Tool created success" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 25 — Get toolbox ID
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Get the toolbox ID <span class="tag-all">everyone</span></h2>
+    <p>Click the <strong>Share</strong> icon.</p>
+    <img src="img/mcp-tool-share.png" alt="Toolbox share icon" />
+  </section>
+  <section>
+    <h2>Note the toolbox <code>id</code></h2>
+    <img src="img/mcp-tool-share-id.png" alt="Toolbox share id" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 26 — Test via v1/responses
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Test via v1/responses <span class="tag-all">everyone</span></h2>
+    <p>In Swagger, navigate to the <strong>Responses</strong> tab.</p>
+    <img src="img/server-responses.png" alt="Responses tab" />
+  </section>
+  <section>
+    <h2>POST v1/responses body</h2>
+    <pre><code class="language-json">{
+  "input": "Search files for psoriasis drug that achieved complete skin clearance in clinical studies",
+  "model": "gemma4:e4b",
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "workshop",
+      "server_url": "df://local/toolboxes/YOUR_TOOLBOX_ID/mcp",
+      "require_approval": "never"
+    }
+  ]
+}</code></pre>
+    <img src="img/server-responses-body.png" alt="Responses body" />
+  </section>
+  <section>
+    <h2>file_search result ✅</h2>
+    <p>The model uses the <code>file_search</code> tool → returns results from <code>01_ixekizumab.txt</code>.</p>
+    <img src="img/server-responses-success.png" alt="Responses success" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 27 — Cherry Studio: add provider
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Cherry Studio integration <span class="tag-all">everyone</span></h2>
+    <p>Open Cherry Studio → <strong>Settings</strong> (gear icon ⚙️) → <strong>Model Provider</strong> → <strong>+ Add</strong>.</p>
+    <img src="img/cherry_add_provider.png" alt="Cherry add provider" />
+  </section>
+  <section>
+    <h2>Name &amp; type</h2>
+    <p>Provider Name: <code>DeepFellow</code>, Provider Type: <code>OpenAI</code> → <strong>OK</strong>.</p>
+    <img src="img/cherry_add_provider_name.png" alt="Cherry provider name" />
+  </section>
+  <section>
+    <h2>Provider params</h2>
+    <ul>
+      <li><strong>API Key</strong>: <code>YOUR_PROJECT_API_KEY</code></li>
+      <li><strong>API Host</strong>: <code>http://localhost:8000</code></li>
+    </ul>
+    <img src="img/cherry_add_provider_params.png" alt="Cherry provider params" />
+  </section>
+  <section>
+    <h2>Fetch model list</h2>
+    <p>Click <strong>Fetch model list</strong> → <code>gemma4:e4b</code> and others appear. Click <strong>+</strong> to add all available models.</p>
+    <img src="img/cherry_add_provider_model_fetch.png" alt="Cherry fetch model list" />
+  </section>
+  <section>
+    <h2>Check connection</h2>
+    <p>Click <strong>Check</strong> → verify green and select the <code>gemma4:e4b</code> model.</p>
+    <img src="img/cherry_add_provider_check.png" alt="Cherry provider check" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 28 — Cherry Studio: first request
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>First request (no tools) <span class="tag-all">everyone</span></h2>
+    <p>Go to the chat view → click the model selector in the top bar → choose <code>gemma4:e4b | DeepFellow</code>.</p>
+    <img src="img/cherry_chat_select.png" alt="Cherry chat select model" />
+  </section>
+  <section>
+    <h2>Integration confirmed ✅</h2>
+    <p>Send any message (e.g. <code>hello</code>). The model responds.</p>
+    <img src="img/cherry_chat_hello.png" alt="Cherry chat hello" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 29 — Cherry Studio: connect toolbox as MCP
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Toolbox as MCP server <span class="tag-all">everyone</span></h2>
+    <p>In chat, click the <strong>MCP Servers</strong> (hammer) icon in the bottom toolbar.</p>
+    <img src="img/cherry_mcp_hammer.png" alt="Cherry MCP hammer icon" />
+  </section>
+  <section>
+    <h2>Add Server</h2>
+    <p>Select <strong>Manual</strong> → click <strong>Add Server…</strong></p>
+    <img src="img/cherry_mcp_add_server.png" alt="Cherry MCP add server" />
+  </section>
+  <section>
+    <h2>+ Add</h2>
+    <img src="img/cherry_mcp_add2.png" alt="Cherry MCP add" />
+  </section>
+  <section>
+    <h2>Quick Create</h2>
+    <img src="img/cherry_mcp_quick_create.png" alt="Cherry MCP quick create" />
+  </section>
+  <section>
+    <h2>New server form</h2>
+    <ul>
+      <li><strong>Name</strong>: <code>Workshop Toolbox</code></li>
+      <li><strong>Type</strong>: <code>Streamable HTTP (streamableHttp)</code></li>
+      <li><strong>URL</strong>: <code>http://localhost:8000/toolboxes/YOUR_TOOLBOX_ID/mcp</code></li>
+      <li><strong>Headers</strong>: <code>Authorization=Bearer YOUR_PROJECT_API_KEY</code></li>
+    </ul>
+    <img src="img/cherry_mcp_create_form.png" alt="Cherry MCP create form" />
+  </section>
+  <section>
+    <h2>Enable the server</h2>
+    <p>Click the slider to enable the MCP server.</p>
+    <img src="img/cherry_mcp_create_enable.png" alt="Cherry MCP enable" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 30 — Cherry Studio: request using the toolbox
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Request using the toolbox <span class="tag-all">everyone</span></h2>
+    <p>Return to chat → click the MCP icon → <strong>Manual</strong>.</p>
+    <img src="img/cherry_mcp_chat_toolbox_manual.png" alt="Cherry MCP chat manual" />
+  </section>
+  <section>
+    <h2>Select Workshop Toolbox</h2>
+    <p>Select <strong>Workshop Toolbox</strong> — it turns green.</p>
+    <img src="img/cherry_mcp_chat_toolbox_enabled.png" alt="Cherry MCP toolbox enabled" />
+  </section>
+  <section>
+    <h2>Send the query</h2>
+    <blockquote>Search files for psoriasis drug that achieved complete skin clearance in clinical studies</blockquote>
+    <img src="img/cherry_mcp_chat_toolbox_send.png" alt="Cherry MCP toolbox send" />
+  </section>
+  <section>
+    <h2>Sourced answer ✅</h2>
+    <p>The model calls <code>search_vector_db</code> → answer sourced from <code>01_ixekizumab.txt</code> (Ixekizumab, UNCOVER trials, PASI 100).</p>
+    <img src="img/cherry_file_search_result.png" alt="Cherry file search result" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 31 — Patient DB: Docker MCP
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Patient DB — Docker MCP <span class="tag-all">everyone</span></h2>
+    <p>Open a terminal, go to <code>patient-database-mcp/</code> in your cloned repo.</p>
+    <span class="cmd">docker compose up -d --build</span>
+    <img src="img/patientdb-terminal-build.png" alt="Patient DB build" />
+  </section>
+  <section>
+    <h2>Container running</h2>
+    <p>After a successful build and run you should see the container logs.</p>
+    <img src="img/patientdb-terminal-running.png" alt="Patient DB running" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 32 — Patient DB: add MCP server in Cherry
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Add MCP server <span class="tag-all">everyone</span></h2>
+    <p>In Cherry Studio: Settings → <strong>MCP Servers</strong> → <strong>Manual</strong> → <strong>Add Server</strong>.</p>
+    <img src="img/cherry_add_patient_server.png" alt="Cherry add patient server" />
+  </section>
+  <section>
+    <h2>Quick create</h2>
+    <p>Click <strong>Add</strong> → <strong>Quick create</strong>.</p>
+    <img src="img/cherry_add_patient_server_quick_create.png" alt="Cherry add patient server quick create" />
+  </section>
+  <section>
+    <h2>New server form</h2>
+    <ul>
+      <li><strong>Name</strong>: <code>Patient Database</code></li>
+      <li><strong>Type</strong>: <code>Streamable HTTP (streamableHttp)</code></li>
+      <li><strong>URL</strong>: <code>http://localhost:8001/mcp</code></li>
+      <li>Toggle the <strong>enable</strong> slider — no Headers required</li>
+    </ul>
+    <img src="img/cherry_add_patient_server_toggle.png" alt="Cherry add patient server toggle" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 33 — Patient DB: query
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Query the patient DB <span class="tag-all">everyone</span></h2>
+    <p>Return to chat → click the MCP hammer icon → <strong>Manual</strong> → select <strong>Patient Database</strong> (it turns green).</p>
+    <img src="img/cherry_add_patient_server_select.png" alt="Cherry patient server select" />
+  </section>
+  <section>
+    <h2>Answer ✅</h2>
+    <blockquote>Which patients in our database are at risk for psoriasis?</blockquote>
+    <p>The model calls <code>query_patients_at_risk("psoriasis")</code> → returns <strong>51 out of 80</strong> patients at risk.</p>
+    <img src="img/cherry_add_patient_server_success.png" alt="Cherry patient server success" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 34 — Patient DB: audit
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Audit — MCP <span class="tag-all">everyone</span></h2>
+    <span class="cmd">deepfellow otel logs -f --tail 1000</span>
+    <img src="img/otel_mcp1.png" alt="OTel MCP logs 1" />
+    <img src="img/otel_mcp2.png" alt="OTel MCP logs 2" />
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
      FIN
 ═══════════════════════════════════════════════════════ -->
 <section>
