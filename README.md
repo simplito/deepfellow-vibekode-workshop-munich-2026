@@ -100,6 +100,37 @@ docker compose up -d --build
 deepfellow otel logs -f --tail 1000
 ```
 
+## Requests
+
+### v1/responses
+
+```json
+{
+  "input": "Search files for psoriasis drug that achieved complete skin clearance in clinical studies",
+  "model": "gemma4:e4b",
+  "tools": [
+    {
+      "type": "mcp",
+      "server_label": "workshop",
+      "server_url": "df://local/toolboxes/YOUR_TOOLBOX_ID/mcp",
+      "require_approval": "never"
+    }
+  ]
+}
+```
+
+### Cherry Studio MCP
+
+```
+# first question
+Search files for psoriasis drug that achieved complete skin clearance in clinical studies
+```
+
+```
+# second question
+Which patients in our database are at risk for psoriasis?
+```
+
 ## Links
 
 - [DeepFellow docs](https://docs.deepfellow.ai)
