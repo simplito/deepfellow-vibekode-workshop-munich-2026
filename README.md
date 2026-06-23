@@ -80,8 +80,10 @@ deepfellow infra info
 deepfellow infra connect wss://<YOUR TEAM INFRA>.workshop-demo.deepfellow.com <DF_MESH_KEY>
 
 # df_infra_tap plugin
-cp -r server-plugins/df_infra_tap ~/.deepfellow/server/plugins/
+cp -r df_infra_tap ~/.deepfellow/server/plugins/
 deepfellow server restart
+
+# in a separate terminal
 deepfellow server logs -f | grep "INFRA TAP"
 
 # PII anonymization

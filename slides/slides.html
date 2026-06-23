@@ -416,9 +416,10 @@ deepfellow infra info</code></pre>
   <section>
     <h2>df_infra_tap plugin <span class="tag-all">everyone</span></h2>
     <p>From the <code>deepfellow-vibekode-workshop-munich-2026</code> directory:</p>
-    <pre><code class="language-bash">cp -r server-plugins/df_infra_tap ~/.deepfellow/server/plugins/
-deepfellow server restart
-deepfellow server logs -f | grep "INFRA TAP"</code></pre>
+    <pre><code class="language-bash">cp -r df_infra_tap ~/.deepfellow/server/plugins/
+deepfellow server restart</code></pre>
+    <p class="note">In a separate terminal:</p>
+    <pre><code class="language-bash">deepfellow server logs -f | grep "INFRA TAP"</code></pre>
     <img src="img/slajd-39-initialize-tap-infra.png" alt="INFRA TAP initialized" />
   </section>
   <section>
