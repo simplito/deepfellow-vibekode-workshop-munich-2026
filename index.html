@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building reliable AI systems with DeepFellow</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .container {
+      max-width: 720px;
+      width: 100%;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4a9eff;
+      border: 1px solid #4a9eff44;
+      border-radius: 4px;
+      padding: 0.2em 0.6em;
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #f0f6fc;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: #8b949e;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta {
+      display: inline-block;
+      background: #4a9eff;
+      color: #0d1117;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-bottom: 3rem;
+      transition: background 0.15s;
+    }
+    .cta:hover { background: #79b8ff; }
+
+    hr {
+      border: none;
+      border-top: 1px solid #21262d;
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #8b949e;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #c9d1d9;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .section { margin-bottom: 2.5rem; }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .links a {
+      color: #4a9eff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      padding: 0.4rem 0.9rem;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .links a:hover { border-color: #4a9eff; color: #79b8ff; }
+
+    .trainers {
+      color: #8b949e;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="badge">VibeKode Munich 2026 &middot; Connecting AI</span>
+    <h1>Building reliable AI systems with DeepFellow</h1>
+    <p class="subtitle">Hands-on workshop &mdash; 23 June 2026</p>
+
+    <a class="cta" href="slides/slides.html">Open slides &rarr;</a>
+
+    <hr>
+
+    <div class="section">
+      <h2>What you will build</h2>
+      <p>A working DeepFellow proxy that sits between your application and one or more LLM backends. By the end of the session you will have wired up model routing, access control, observability, and a production-ready API endpoint &mdash; with running code you can carry back to your own stack.</p>
+      <p>No prior DeepFellow experience required. Familiarity with the command line is enough.</p>
+    </div>
+
+    <div class="section">
+      <h2>What is DeepFellow?</h2>
+      <p>DeepFellow is a modular framework made of components. Each component is independent. Use one. Use a few. Use them all. Combine them the way your architecture demands. Scale up, scale down, but never lose control over your data and costs.</p>
+      <p>Production-ready infrastructure for self-hosted AI deployments. Full data sovereignty, built-in compliance, OpenAI-compatible API.</p>
+    </div>
+
+    <div class="section">
+      <h2>Links</h2>
+      <div class="links">
+        <a href="slides/slides.html">Workshop slides</a>
+        <a href="https://docs.deepfellow.ai">DeepFellow docs</a>
+        <a href="https://vibekode.it/connecting-ai/reliable-ai-systems-deepfellow/">VibeKode workshop page</a>
+        <a href="https://hack.chat/?workshop-DF-Munich-2026">Workshop chat</a>
+        <a href="https://github.com/simplito/deepfellow-vibekode-workshop-munich-2026">GitHub repo</a>
+      </div>
+    </div>
+
+    <p class="trainers">Trainers: Piotr Zalewa &amp; Micha&#322; Komorowski (DeepFellow core team)</p>
+  </div>
+</body>
+</html>
