@@ -905,6 +905,31 @@ deepfellow server restart</code></pre>
   </ul>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════
+     SECTION — Switch to local infra
+═══════════════════════════════════════════════════════ -->
+<section>
+  <section>
+    <h2>Switch to local infra <span class="tag-all">everyone</span></h2>
+    <p>You leave today with a fully working DeepFellow stack on your laptop.</p>
+    <pre><code class="language-bash">deepfellow infra disconnect
+deepfellow infra env set INFRA_URL http://localhost:8086
+deepfellow infra info --secret
+deepfellow server env set INFRA__URL http://localhost:8086
+deepfellow server env set INFRA__API_KEY &lt;infra API key from the command above&gt;</code></pre>
+  </section>
+  <section>
+    <h2>Homework 🏠</h2>
+    <p>Add a local model of your choice via Ollama:</p>
+    <ol style="font-size:1rem;line-height:2.2;">
+      <li>Open your local DFInfra → <strong>Services</strong> → add <strong>Ollama</strong></li>
+      <li>Pull a model of your choice — e.g. <code>gemma4:e2b</code></li>
+      <li>Call it through DFServer and explore</li>
+    </ol>
+    <p class="note">Docs: <a href="https://docs.deepfellow.ai" target="_blank">docs.deepfellow.ai</a></p>
+  </section>
+</section>
+
 </div><!-- /.slides -->
 </div><!-- /.reveal -->
 
